@@ -1,0 +1,15 @@
+playerCount = int(input())
+skillLimit = int(input())
+playerSkills = []
+for player in range(playerCount):
+    playerSkills.append(int(input()))
+playerSkills.sort()
+skill = 0
+players = 0
+for player0 in range(len(playerSkills)):
+    if skill + playerSkills[player0] <= skillLimit:
+        skill += playerSkills[player0]
+        players += 1
+    else:
+        break
+print(players)
