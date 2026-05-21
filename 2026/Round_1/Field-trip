@@ -1,0 +1,21 @@
+people = int(input())
+dict = {
+    "A": 0,
+    "B": 0,
+    "C": 0,
+}
+vote = ""
+
+
+for person in range(people):
+    vote = input()
+    dict[vote] += 1
+
+if dict["A"] > dict["B"] and dict["A"] > dict["C"]:
+    print("A wins.")
+elif dict["B"] > dict["A"] and dict["B"] > dict["C"]:
+    print("B wins.")
+elif dict["C"] > dict["B"] and dict["C"] > dict["A"]:
+    print("C wins.")
+else:
+    print("It's a tie.")
