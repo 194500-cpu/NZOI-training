@@ -1,36 +1,27 @@
-#include <vector>
-#include <iostream>
-#include <algorithm>
-#include <string>
+#include <bits/stdc++.h>
 using namespace std;
-using ll = long long;
 
 int main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
-	ll t;
-	cin >> t;
-	for (int i = 0; i < t; ++i) {
-		ll length;
-		cin >> length;
-		string input;
-		cin >> input;
-		vector<ll> prefixSum(length+1, 0);
-		for (int g = 1; g <= length; ++g) {
-			prefixSum[g] = prefixSum[g-1] + input[g-1] - '0';
-		}
-		ll count = 0;
-		for (int h = 1; h <= length; ++h) {
-			for (int j = h; j <= length; ++j)
-			if (prefixSum[j] - prefixSum[j-h] == h) {
-				++count;
-			}
+	long long n;
+	cin >> n;
+	for (long long h = 0; h < n; ++h) {
+		long long l; long long count = 0;
+		cin >> l;
+		string in;
+		cin >> in;
+
+		unordered_map<long long, long long> counter;
+		counter[0] = 1;
+		vector<long long> prefix(l + 1, 0);
+		for (long long i = 1; i <= l; ++i) {
 			
+			prefix[i] = prefix[i-1] + in[i-1] - '0';
+			count += counter[prefix[i]-i];
+			counter[prefix[i] - i] += 1;
 		}
 		cout << count << "\n";
-		
 	}
-	return 0;
+
 }
-
-

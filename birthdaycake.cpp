@@ -1,27 +1,18 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
+ch#include <bits/stdc++.h>
 using namespace std;
-using ll = long long;
-
 
 int main() {
-	ll n; ll m;
+	ios_base::sync_with_stdio(false);
+	cin.tie(nullptr);
+	int n; int m;
 	cin >> n >> m;
-	vector<ll> rows(n);
-	vector<ll> columns(m);
-	for (ll &v : rows) {
-		cin >> v;
-	}
-	for (ll &v2 : columns) {
-		cin >> v2;
-	}
-	
-	ll maximum = 0; ll minimum = 0;
+	int thick = 0;
 	for (int i = 0; i < n; ++i) {
-		for (int j = 0; j < m; ++j) {
-			maximum += min(rows[i], columns[j]);
-		}
+		cin >> thick;
 	}
-	
+	for (int i = 0; i < m; ++i) {
+		cin >> thick;
+		}
+	cout << n*m + max(n,m) * (thick-1) << " "<< thick * n * m;
+
 }

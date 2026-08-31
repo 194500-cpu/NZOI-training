@@ -1,6 +1,4 @@
-#include <vector>
-#include <iostream>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
 
 int main() {
@@ -10,26 +8,21 @@ int main() {
 	cin >> t;
 	for (int i = 0; i < t; ++i) {
 		int n;
-		int best = 0;
 		cin >> n;
-		vector<int> sights(n);
-		for (int &item : sights) cin >> item;
-		vector<int> left(n);
-		left[0] = sights[0];
-		for (int j = 1; j < n; ++j) {
-			left[j] = max(left[j-1], sights[j] + j);
+		vector<int> milestones(n);
+		for (int &item : milestones) {
+			cin >> item;
 		}
-		vector<int> right(n);
-		right[n-1] = sights[n-1] - (n - 1);
+		vector<int> bestLeft(n + 1, 0);
+		vector<int> bestRight(n);
+		int bestl = 0; int bestr = 0;
+		for (int j = 1; j <= n; ++j) {
+			bestl = max(bestl, milestones[j - 1] + j);
+			bestr = max(bestr, milestones[j - 1] - j);
+			bestLeft[j] = bestl;
+			bestRight[j] = bestr;
+		}
 		
-		for (int k = n-2; k >= 0; --k) {
-			right[k] = max(right[k + 1], sights[k] - k);
-		}
-		for (int h = 1; h < n-1; ++h) {
-			int temp = sights[h] + left[h-1] + right[h+1];
-			best = max(best, temp);
-		}
-		cout << best << "\n";
 	}
 	
 }
